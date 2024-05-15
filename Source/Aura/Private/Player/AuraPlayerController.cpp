@@ -4,6 +4,7 @@
 #include "Player/AuraPlayerController.h"
 #include "EnhancedInputSubsystems.h"
 #include "EnhancedInputComponent.h"
+
 #include "Interaction/EnemyInterface.h"
 
 AAuraPlayerController::AAuraPlayerController()
@@ -16,6 +17,7 @@ AAuraPlayerController::AAuraPlayerController()
 void AAuraPlayerController::PlayerTick(float DeltaTime)
 {
 	Super::PlayerTick(DeltaTime);
+	CursorTrace();
 }
 
 void AAuraPlayerController::BeginPlay()
@@ -78,7 +80,7 @@ void AAuraPlayerController::CursorTrace()
 	{
 		LastActor->UnhighlightActor();
 	}
-	else if (LastActor != ThisActor)
+	else if (LastActor && ThisActor && LastActor != ThisActor)
 	{
 		LastActor->UnhighlightActor();
 		ThisActor->HighlightActor();
